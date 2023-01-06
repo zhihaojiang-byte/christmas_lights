@@ -1,2 +1,3 @@
 # christmas_lights
-hello
+Hello guys, I made a christmas lights effect with js.
+
