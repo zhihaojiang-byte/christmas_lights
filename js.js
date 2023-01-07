@@ -16,8 +16,11 @@ class Ball{
         this.dom.style.height = `${this.radius*2}px`
         this.dom.style.backgroundColor = this.color;
         this.dom.className = "ball"
-        this.dom.style.top = `${this.y-this.radius}px`
-        this.dom.style.left = `${this.x-this.radius}px`
+
+        // this.dom.style.top = `${this.y-this.radius}px`
+        // this.dom.style.left = `${this.x-this.radius}px`
+
+        this.dom.style.transform = `translate3d(${this.x-this.radius}px, ${this.y-this.radius}px ,0)`;
 
         document.body.appendChild(this.dom)
         ball1Arr.push(this);
@@ -29,8 +32,12 @@ class Ball{
         this.y += this.dy;
         this.radius += 0.15;
         this.opacity -= 0.005;
-        this.dom.style.top = `${this.y-this.radius}px`
-        this.dom.style.left = `${this.x-this.radius}px`
+
+        // this.dom.style.top = `${this.y-this.radius}px`
+        // this.dom.style.left = `${this.x-this.radius}px`
+
+        this.dom.style.transform = `translate3d(${this.x-this.radius}px, ${this.y-this.radius}px ,0)`;
+
         this.dom.style.width = `${this.radius*2}px`
         this.dom.style.height = `${this.radius*2}px`
         this.dom.style.opacity = `${this.opacity}`
@@ -45,11 +52,20 @@ class Ball{
     }
 }
 
-setInterval(function () {
+
+let animation = false;
+
+function step(){
+    if (ball1Arr.length===0){
+        animation = false;
+        return
+    }
     for (const ball of ball1Arr){
         ball.update()
     }
-},20)
+    requestAnimationFrame(step)
+}
+
 
 
 let lock = true;
@@ -61,6 +77,13 @@ document.addEventListener("mousemove", function (e){
      lock = true
     }, 10)
 
+
     new Ball(e.clientX, e.clientY)
+
+    if (animation === false){
+        animation = true;
+        requestAnimationFrame(step)
+    }
+
 },false)
 
