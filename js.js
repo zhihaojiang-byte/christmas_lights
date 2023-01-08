@@ -17,9 +17,6 @@ class Ball{
         this.dom.style.backgroundColor = this.color;
         this.dom.className = "ball"
 
-        // this.dom.style.top = `${this.y-this.radius}px`
-        // this.dom.style.left = `${this.x-this.radius}px`
-
         this.dom.style.transform = `translate3d(${this.x-this.radius}px, ${this.y-this.radius}px ,0)`;
 
         document.body.appendChild(this.dom)
@@ -32,9 +29,6 @@ class Ball{
         this.y += this.dy;
         this.radius += 0.15;
         this.opacity -= 0.005;
-
-        // this.dom.style.top = `${this.y-this.radius}px`
-        // this.dom.style.left = `${this.x-this.radius}px`
 
         this.dom.style.transform = `translate3d(${this.x-this.radius}px, ${this.y-this.radius}px ,0)`;
 
